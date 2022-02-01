@@ -1,29 +1,42 @@
 from graph import Graph 
+from BFS_search import BFSSearch
 
 
 def main():
     graph = Graph()
 
-    num_vertices, num_edges = input().split()
-    num_vertices = int(num_vertices)
+    num_vertex, num_edges = input().split()
+    num_vertex = int(num_vertex)
     num_edges = int(num_edges)
 
-    for index in range(1, num_vertices+1):
+
+    for index in range(1, num_vertex+1):
         heuristic = int(input())
-        graph.new_vertice(index, heuristic)
+        graph.add_heuristic(index, heuristic)
+
 
     for edge in range(1, num_edges+1):
-        index_vertice1, index_vertice2, weight = input().split()
-        index_vertice1 = int(index_vertice1)
-        index_vertice2 = int(index_vertice2)
+        vertex1, vertex2, weight = input().split()
+        vertex1 = int(vertex1)
+        vertex2 = int(vertex2)
         weight = int(weight)
-        graph.new_edge(index_vertice1, index_vertice2, weight)
 
-    start_vertice, end_vertice = input().split()
-    start_vertice = int(start_vertice)
-    end_vertice = int(end_vertice)
+        graph.add_vertex(vertex1, vertex2)
+        graph.add_weight(vertex1, vertex2, weight)
 
-    graph.mostrar()
+
+    start_vertex, end_vertex = input().split()
+    start_vertex = int(start_vertex)
+    end_vertex = int(end_vertex)
+
+    print("\n\n")
+
+    bfs_search = BFSSearch()
+    depth, path_cost, path = bfs_search.do_bfs_search(graph.get_adjacent_list(), start_vertex, end_vertex)
+
+    print(depth)
+    print(path_cost)
+    print(path)
 
 
 if __name__ == "__main__":
