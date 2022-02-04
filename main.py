@@ -1,5 +1,6 @@
 from graph import Graph 
-from BFS_search import BFSSearch
+from bfs_search import BFSSearch
+from a_star_search import AStarSearch
 
 
 def main():
@@ -29,14 +30,22 @@ def main():
     start_vertex = int(start_vertex)
     end_vertex = int(end_vertex)
 
-    print("\n\n")
+    print("\n")
 
     bfs_search = BFSSearch()
-    depth, path_cost, path = bfs_search.do_bfs_search(graph.get_adjacent_list(), start_vertex, end_vertex)
+    depth, path_cost, bfs_path = bfs_search.do_bfs_search(graph, start_vertex, end_vertex)
 
     print(depth)
     print(path_cost)
-    print(path)
+    print(bfs_path)
+
+    a_star_search = AStarSearch()
+    edge_cost, heuristic_cost, heuristic_function_cost, a_star_path = a_star_search.do_a_star_search(graph, start_vertex, end_vertex)
+
+    print(edge_cost)
+    print(heuristic_cost)
+    print(heuristic_function_cost)
+    print(a_star_path)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class Graph:
     def __init__(self):
         self.__adjacent_list = defaultdict(set)
@@ -9,6 +10,10 @@ class Graph:
 
     def is_connected(self, vertex1, vertex2):
         return vertex1 in self.__adjacent_list and vertex2 in self.__adjacent_list[vertex1]
+
+    
+    def get_neighbors(self, vertex):
+        return self.__adjacent_list[vertex]
 
 
     def get_adjacent_list(self):

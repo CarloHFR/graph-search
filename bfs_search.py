@@ -2,13 +2,14 @@
 
 from queue import Queue
 
+
 class BFSSearch:
 
     def __init__(self):
         pass
 
 
-    def do_bfs_search(self, adjacent_list, start_vertex, end_vertex):
+    def do_bfs_search(self, graph, start_vertex, end_vertex):
         visited = set()
         queue = Queue()
         parent = dict()
@@ -29,7 +30,7 @@ class BFSSearch:
                 path_found = True
                 break
 
-            for next_vertex in adjacent_list[current_vertex]:
+            for next_vertex in graph.get_neighbors(current_vertex):
                 if next_vertex not in visited:
                     queue.put(next_vertex)
                     parent[next_vertex] = current_vertex
